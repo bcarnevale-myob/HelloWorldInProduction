@@ -35,7 +35,7 @@ public class WebApplicationTest {
 
     @Test
     public void canPerformGetRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/test");
+        URL url = new URL("http://localhost:8080/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();

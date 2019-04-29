@@ -6,7 +6,8 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class MyHandler implements HttpHandler {
+public class RequestHandler implements HttpHandler {
+
     @Override
     public void handle(HttpExchange request) throws IOException {
         String response = "Hello Bianca";
@@ -15,5 +16,6 @@ public class MyHandler implements HttpHandler {
         outputStream.write(response.getBytes());
         outputStream.close();
     }
+
 }
 
