@@ -14,7 +14,7 @@ public class WebApplicationTest {
     public void canCreateConnection() throws IOException {
 
         HelloWorldServer helloWorldServer = new HelloWorldServer(8080);
-        helloWorldServer.start();
+        helloWorldServer.createServer();
 
         assertDoesNotThrow(() -> {
             URL url = new URL("http://localhost:8080");

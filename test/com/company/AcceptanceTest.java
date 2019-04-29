@@ -15,7 +15,7 @@ class AcceptanceTest {
 
         HelloWorldServer helloWorldServer = new HelloWorldServer(8080);
 
-        helloWorldServer.start();
+        helloWorldServer.createServer();
 
         URL url = new URL("http://localhost:8080");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

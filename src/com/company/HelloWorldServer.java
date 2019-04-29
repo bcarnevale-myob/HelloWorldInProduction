@@ -14,7 +14,7 @@ public class HelloWorldServer {
         this.port = port;
     }
 
-    public void start() throws IOException {
+    public void createServer() throws IOException {
         this.server = HttpServer.create(new InetSocketAddress(port), 0);
     }
 }
