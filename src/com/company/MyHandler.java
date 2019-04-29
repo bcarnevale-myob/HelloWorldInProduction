@@ -9,7 +9,7 @@ import java.io.OutputStream;
 public class MyHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange request) throws IOException {
-        String response = "This is the response";
+        String response = "Hello Bianca";
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());

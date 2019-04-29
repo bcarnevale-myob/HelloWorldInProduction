@@ -17,7 +17,7 @@ class AcceptanceTest {
 
         helloWorldServer.createServer();
 
-        URL url = new URL("http://localhost:8080");
+        URL url = new URL("http://localhost:8080/test");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("GET");
@@ -28,7 +28,7 @@ class AcceptanceTest {
         var response = new String(bytes);
 
         assertEquals(200, responseCode);
-        assertEquals("", response);
+        assertEquals("Hello Bianca", response);
     }
 
 
