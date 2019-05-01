@@ -34,11 +34,21 @@ public class WebApplicationTest {
     }
 
     @Test
-    public void rootEndpointAllowsRequests() throws IOException {
+    public void rootEndpointAllowsGetRequests() throws IOException {
         URL url = new URL("http://localhost:8080/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
         assertEquals(200, responseCode);
     }
+
+    @Test
+    public void rootEndpointAllowsPostRequests() throws IOException {
+        URL url = new URL("http://localhost:8080/");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        int responseCode = connection.getResponseCode();
+        assertEquals(200, responseCode);
+    }
+    
 }
