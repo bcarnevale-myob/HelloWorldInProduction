@@ -27,8 +27,10 @@ class AcceptanceTest {
         var bytes = connection.getInputStream().readAllBytes();
         var response = new String(bytes);
 
+//        var doesMatch = Regex.Matches(Hello Bianca - the time on the server is [0-9]{1,2}:[0-9]{2}(am|pm) on [0-3]?[0-9] \w+ [0-9]{4})
         assertEquals(200, responseCode);
-        assertEquals("Hello Bianca - the time on the server is 11:11am on 15 April 2019", response);
+        assertEquals("Hello Bianca - the time on the server is [0-9]{1,2}:[0-9]{2}(am|pm) on [0-3]?[0-9] \\w+ [0-9]{4}", response);
     }
+    
 
 }
