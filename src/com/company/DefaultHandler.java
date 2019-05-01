@@ -19,16 +19,18 @@ public class DefaultHandler implements HttpHandler {
         }
         request.close();
 
-
     }
 
-    private void getHandler(HttpExchange request) throws IOException {
-        CurrentDateTime currentDateTime = new CurrentDateTime;
-        String response = "Hello Bianca - the time on the server is "  + currentDateTime.getCurrentTime() + " on " + currentDateTime.getCurrentDate();
+    private void getHandler(HttpExchange request, DateTime dateTime) throws IOException {
+        String response = "Hello Bianca - the time on the server is "  + dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
         outputStream.close();
+    }
+
+    private void getHandler(HttpExchange request) throws IOException {
+        getHandler(request, new CurrentDateTime());
     }
 
     private void notFound(HttpExchange request) throws IOException {
