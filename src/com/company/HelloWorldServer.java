@@ -11,6 +11,7 @@ public class HelloWorldServer {
     private InetSocketAddress socket;
     private final int port;
 
+
     public HelloWorldServer(int port){
         this.port = port;
     }
@@ -18,7 +19,7 @@ public class HelloWorldServer {
     public void createServer() throws IOException {
         this.socket = new InetSocketAddress(port);
         this.server = HttpServer.create(socket, 0);
-        this.server.createContext("/", new RequestHandler());
+        this.server.createContext("/", new DefaultHandler());
         this.server.setExecutor(null);
         this.server.start();
     }

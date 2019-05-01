@@ -20,7 +20,7 @@ public class WebApplicationTest {
     }
 
     @AfterEach
-    public void tearDown() throws InterruptedException {
+    public void tearDown() {
         this.helloWorldServer.stopServer();
     }
 
@@ -34,7 +34,7 @@ public class WebApplicationTest {
     }
 
     @Test
-    public void canPerformGetRequest() throws IOException {
+    public void rootEndpointAllowsRequests() throws IOException {
         URL url = new URL("http://localhost:8080/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
