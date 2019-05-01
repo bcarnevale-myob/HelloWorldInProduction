@@ -16,8 +16,6 @@ public class DefaultHandler implements HttpHandler {
         switch(request.getRequestMethod()){
             case "GET":
                 getHandler(request);
-            case "POST":
-                postHandler(request);
             default:
                 notFound(request);
         }
@@ -32,23 +30,6 @@ public class DefaultHandler implements HttpHandler {
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
         outputStream.close();
-    }
-
-    private void postHandler(HttpExchange request) throws IOException {
-        request.sendResponseHeaders(201, 0);
-
-        if (request.getResponseCode() == HttpURLConnection.HTTP_CREATED) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    postConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-            while ((inputLine = in .readLine()) != null) {
-                response.append(inputLine);
-            } in .close();
-            System.out.println(response.toString());
-        } else {
-            System.out.println("POST NOT WORKED");
-        }
     }
 
     private void notFound(HttpExchange request) throws IOException {
