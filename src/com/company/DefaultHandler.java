@@ -5,6 +5,8 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DefaultHandler implements HttpHandler {
 
@@ -14,6 +16,7 @@ public class DefaultHandler implements HttpHandler {
             case "GET":
                 getHandler(request);
             case "POST":
+                postHandler(request);
             default:
                 notFound(request);
         }
@@ -28,6 +31,10 @@ public class DefaultHandler implements HttpHandler {
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
         outputStream.close();
+    }
+
+    private void postHandler(HttpExchange request) throws IOException {
+        request.sendResponseHeaders(200, 0);
     }
 
     private void notFound(HttpExchange request) throws IOException {
