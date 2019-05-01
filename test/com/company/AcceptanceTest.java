@@ -3,6 +3,7 @@ package com.company;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
@@ -45,7 +46,13 @@ class AcceptanceTest {
         URL url = new URL("http://localhost:8080/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
+        String POST_PARAMS = "Fiona";
+
         connection.setRequestMethod("POST");
+        OutputStream os = connection.getOutputStream();
+        os.write(POST_PARAMS.getBytes());
+        os.flush();
+        os.close();
 
         int responseCode = connection.getResponseCode();
 
