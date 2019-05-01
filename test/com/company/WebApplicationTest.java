@@ -48,7 +48,9 @@ public class WebApplicationTest {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         int responseCode = connection.getResponseCode();
-        assertEquals(200, responseCode);
+        assertEquals(201, responseCode);
     }
-    
+
+
+
 }
