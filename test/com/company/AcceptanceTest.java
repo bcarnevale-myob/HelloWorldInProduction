@@ -28,8 +28,7 @@ class AcceptanceTest {
         var response = new String(bytes);
 
         assertEquals(200, responseCode);
-        assertEquals("Hello Bianca", response);
+        assertEquals("Hello Bianca - the time on the server is 11:11am on 15 April 2019", response);
     }
-
 
 }
