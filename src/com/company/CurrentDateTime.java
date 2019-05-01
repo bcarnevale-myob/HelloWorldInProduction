@@ -7,14 +7,14 @@ import java.util.Date;
 public class CurrentDateTime implements DateTime {
     @Override
     public String getCurrentDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     @Override
     public String getCurrentTime() {
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mma");
         Date date = new Date();
         return timeFormat.format(date);
     }
