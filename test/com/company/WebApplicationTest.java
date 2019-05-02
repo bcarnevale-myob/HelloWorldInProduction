@@ -52,6 +52,15 @@ public class WebApplicationTest {
     }
 
     @Test
+    public void userEndPointDoesNotAllowGetRequest() throws IOException {
+        URL url = new URL("http://localhost:8080/users/");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        int responseCode = connection.getResponseCode();
+        assertEquals(404, responseCode);
+    }
+
+    @Test
     public void userEndPointAllowsPostRequest() throws IOException {
         URL url = new URL("http://localhost:8080/users/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

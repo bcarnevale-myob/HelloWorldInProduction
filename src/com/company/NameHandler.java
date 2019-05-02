@@ -5,11 +5,11 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 
-public class UserHandler implements HttpHandler {
+public class NameHandler implements HttpHandler {
 
     private NameRepository names;
 
-    public UserHandler(NameRepository names) {
+    public NameHandler(NameRepository names) {
         this.names = names;
     }
 
