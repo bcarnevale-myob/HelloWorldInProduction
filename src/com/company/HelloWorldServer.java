@@ -1,6 +1,5 @@
 package com.company;
 
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class HelloWorldServer {
         this.socket = new InetSocketAddress(port);
         this.server = HttpServer.create(socket, 0);
         this.server.createContext("/", new DefaultHandler());
-        this.server.createContext("/users/", new UserHandler(names));
+        this.server.createContext("/names/", new NameHandler(names));
         this.server.setExecutor(null);
         this.server.start();
     }
