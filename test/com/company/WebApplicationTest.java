@@ -53,7 +53,7 @@ public class WebApplicationTest {
 
     @Test
     public void userEndPointDoesNotAllowGetRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/users/");
+        URL url = new URL("http://localhost:8080/names/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
@@ -62,7 +62,7 @@ public class WebApplicationTest {
 
     @Test
     public void userEndPointAllowsPostRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/users/");
+        URL url = new URL("http://localhost:8080/names/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         int responseCode = connection.getResponseCode();

@@ -6,7 +6,7 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class DefaultHandler implements HttpHandler {
+public class DefaultHandler extends NameRepositoryHandler {
 
     @Override
     public void handle(HttpExchange request) throws IOException {
