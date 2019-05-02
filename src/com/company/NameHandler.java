@@ -1,11 +1,10 @@
 package com.company;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 
-public class NameHandler implements HttpHandler {
+public class NameHandler extends NameRepositoryHandler {
 
     private NameRepository names;
 

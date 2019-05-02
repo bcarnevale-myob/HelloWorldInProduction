@@ -18,7 +18,7 @@ public class DefaultHandlerTests {
 
         helloWorldServer.createServer();
 
-        URL urlPost = new URL("http://localhost:8080/users/fiona");
+        URL urlPost = new URL("http://localhost:8080/names/fiona");
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
