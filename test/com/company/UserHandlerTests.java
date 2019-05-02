@@ -7,7 +7,6 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -61,12 +60,10 @@ public class UserHandlerTests {
 
         userHandler.handle(mockRequest);
 
-        // assert name repo has the right name
-        // responds with 201 and adds the name to the list of names
-        assertEquals("[bianca]", names.get().toString());
-
         verify(mockRequest).sendResponseHeaders(201, 0);
         verify(mockRequest).close();
+
+        assertEquals("[bianca]", names.get().toString());
 
     }
 
