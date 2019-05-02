@@ -4,13 +4,10 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserHandler implements HttpHandler {
 
-    public NameRepository names;
+    private NameRepository names;
 
     public UserHandler(NameRepository names) {
         this.names = names;
