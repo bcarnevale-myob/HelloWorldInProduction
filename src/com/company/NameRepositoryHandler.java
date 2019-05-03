@@ -4,6 +4,8 @@ import com.sun.net.httpserver.HttpHandler;
 
 public abstract class NameRepositoryHandler implements HttpHandler {
 
-    public NameRepository names;
+    protected NameRepository names;
+
+    //method to set namerepo + get
 
 }

@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +31,7 @@ public class NameHandlerTests {
         verify(mockRequest).sendResponseHeaders(201, 0);
         verify(mockRequest).close();
 
-        assertEquals("[bianca]", names.get().toString());
+        assertTrue(names.get().contains("bianca"));
 
     }
 
