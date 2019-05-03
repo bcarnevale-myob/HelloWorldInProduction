@@ -7,10 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class DefaultHandlerTests {
+public class RootHandlerTests {
 
     @Test
     public void aNameCanBeAddedToTheResponse() throws IOException {
@@ -22,19 +21,29 @@ public class DefaultHandlerTests {
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
-        connection.setRequestMethod("GET");
-
         int responseCode = connection.getResponseCode();
+        connection.disconnect();
 
-        var bytes = connection.getInputStream().readAllBytes();
+        assertEquals(201, responseCode);
+
+        URL urlPost2 = new URL("http://localhost:8080/");
+        HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
+        connection2.setRequestMethod("GET");
+
+        int responseCode2 = connection2.getResponseCode();
+
+        var bytes = connection2.getInputStream().readAllBytes();
         var response = new String(bytes);
 
         var expectedRegex = Pattern.compile("Hello Bianca & Fiona - the time on the server is [0-9]{1,2}:[0-9]{2}(am|pm) on [0-3]?[0-9] \\w+ [0-9]{4}");
 
         var responseMatches = expectedRegex.matcher(response).matches();
+        assertEquals(200, responseCode2 );
 
-        assertEquals(200, responseCode);
-        assertTrue(responseMatches);
+        assertTrue(responseMatches, "\n" + response+ "\n" + expectedRegex.toString());
+
     }
 
 }
+// 2 tests: name added to response and name can be read from response
+// string compare to the regex

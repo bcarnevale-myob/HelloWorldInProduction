@@ -5,9 +5,11 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class DefaultHandler extends NameRepositoryHandler {
+public class RootHandler extends HelloWorldHandler {
 
-    // constructor that takes names and date
+    public RootHandler(NameRepository names) {
+        super(names);
+    }
 
     @Override
     public void handle(HttpExchange request) throws IOException {
@@ -22,7 +24,7 @@ public class DefaultHandler extends NameRepositoryHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        CurrentDateTime dateTime = new CurrentDateTime();
+        var dateTime = new CurrentDateTime();
         String response = "Hello Bianca - the time on the server is "  + dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
