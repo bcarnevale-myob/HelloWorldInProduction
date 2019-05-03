@@ -12,8 +12,6 @@ public class HelloWorldServer {
     private final int port;
     private NameRepository names;
 
-    // create repository which stores names, inject it into handlers. The handlers will interact with the stored list via repositorys
-
     public HelloWorldServer(int port){
         this.port = port;
     }
