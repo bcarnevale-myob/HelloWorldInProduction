@@ -4,12 +4,10 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
 
-public class NameHandler extends NameRepositoryHandler {
-
-    private NameRepository names;
+public class NameHandler extends HelloWorldHandler {
 
     public NameHandler(NameRepository names) {
-        this.names = names;
+        super(names);
     }
 
     @Override

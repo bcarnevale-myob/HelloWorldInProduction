@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -17,7 +16,7 @@ public class NameHandlerTests {
 
     @Test
     public void PostRequestsAddsNameToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new NameRepository();
+        NameRepository names = new InMemoryNameRepository();
 
         NameHandler userHandler = new NameHandler(names);
 
