@@ -20,4 +20,5 @@ public class InMemoryNameRepository implements NameRepository {
     public void add(String name) {
         this.names.add(name);
     }
+
 }

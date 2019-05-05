@@ -30,7 +30,7 @@ public class NameHandlerTests {
         verify(mockRequest).sendResponseHeaders(201, 0);
         verify(mockRequest).close();
 
-        assertTrue(names.get().contains("bianca"));
+        assertTrue(names.get().contains("Bianca"));
 
     }
 
