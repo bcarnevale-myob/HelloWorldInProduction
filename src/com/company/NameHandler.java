@@ -28,9 +28,10 @@ public class NameHandler extends HelloWorldHandler {
 
         String[] pathTokens = path.split("/");
 
-        String name = pathTokens[pathTokens.length - 1];
+        String nameFromPath = pathTokens[pathTokens.length - 1];
+        String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
-        names.add(name);
+        names.add(nameFormatted);
     }
 
     private void notFound(HttpExchange request) throws IOException {
