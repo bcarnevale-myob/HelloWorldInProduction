@@ -10,6 +10,4 @@ public abstract class HelloWorldHandler implements HttpHandler {
 
     protected NameRepository names;
 
-    //method to set namerepo + get
-
 }
