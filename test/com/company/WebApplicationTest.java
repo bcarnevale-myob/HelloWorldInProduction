@@ -87,4 +87,13 @@ public class WebApplicationTest {
         assertEquals(202, responseCode);
     }
 
+    @Test
+    public void nameEndPointAllowsPutRequest() throws IOException {
+        URL url = new URL("http://localhost:8080/names/");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("PUT");
+        int responseCode = connection.getResponseCode();
+        assertEquals(204, responseCode);
+    }
+
 }
