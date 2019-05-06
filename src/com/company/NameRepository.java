@@ -6,4 +6,6 @@ public interface NameRepository {
     List<String> get();
 
     void add(String name);
+
+    void remove(String name);
 }
