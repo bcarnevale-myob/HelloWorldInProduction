@@ -40,7 +40,7 @@ public class RootHandler extends HelloWorldHandler {
         String andNames = "";
 
         for(int i = 0; i < names.get().size(); i++) {
-           andNames += "& " + names.get().get(i);
+           andNames += "and " + names.get().get(i);
         }
 
         return andNames;

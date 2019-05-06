@@ -41,19 +41,25 @@ public class NameHandlerTests {
 
         NameHandler userHandler = new NameHandler(names);
 
-        HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
+        HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
-        when(mockRequest.getRequestMethod()).thenReturn("POST");
-        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/bianca"));
-        when(mockRequest.getRequestMethod()).thenReturn("POST");
-        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest1.getRequestMethod()).thenReturn("POST");
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        userHandler.handle(mockRequest1);
 
-        userHandler.handle(mockRequest);
+        verify(mockRequest1).sendResponseHeaders(201, 0);
+        verify(mockRequest1).close();
 
-        verify(mockRequest).sendResponseHeaders(201, 0);
-        verify(mockRequest).close();
+        HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
-        assertEquals("[Bianca, Fiona]", names.get());
+        when(mockRequest2.getRequestMethod()).thenReturn("POST");
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona"));
+
+        userHandler.handle(mockRequest2);
+
+        verify(mockRequest2).sendResponseHeaders(201, 0);
+        verify(mockRequest2).close();
+
         assertTrue(names.get().contains("Bianca"));
         assertTrue(names.get().contains("Fiona"));
 
