@@ -3,6 +3,7 @@ package com.company;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class NameHandler extends HelloWorldHandler {
 
@@ -13,6 +14,8 @@ public class NameHandler extends HelloWorldHandler {
     @Override
     public void handle(HttpExchange request) throws IOException {
         switch(request.getRequestMethod()){
+            case "GET":
+                getHandler(request);
             case "POST":
                 postHandler(request);
             case "DELETE":
@@ -47,6 +50,14 @@ public class NameHandler extends HelloWorldHandler {
         String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
         names.remove(nameFormatted);
+    }
+
+    private void getHandler(HttpExchange request) throws IOException {
+        String response = String.valueOf(names.get());
+        request.sendResponseHeaders(202, response.length());
+        OutputStream outputStream = request.getResponseBody();
+        outputStream.write(response.getBytes());
+        outputStream.close();
     }
 
     private void notFound(HttpExchange request) throws IOException {

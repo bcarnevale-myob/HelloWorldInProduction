@@ -69,4 +69,22 @@ public class WebApplicationTest {
         assertEquals(201, responseCode);
     }
 
+    @Test
+    public void nameEndPointAllowsDeleteRequest() throws IOException {
+        URL url = new URL("http://localhost:8080/names/");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
+        int responseCode = connection.getResponseCode();
+        assertEquals(200, responseCode);
+    }
+
+    @Test
+    public void nameEndPointAllowsGetRequest() throws IOException {
+        URL url = new URL("http://localhost:8080/names/");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        int responseCode = connection.getResponseCode();
+        assertEquals(202, responseCode);
+    }
+
 }
