@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -91,6 +93,45 @@ public class NameHandlerTests {
         verify(mockRequest2).close();
 
         assertFalse(names.get().contains("Bianca"));
+
+    }
+
+    @Test
+    public void GetRequestGetsAllNamesFromTheNameRepository() throws IOException {
+        HelloWorldServer helloWorldServer = new HelloWorldServer(8080);
+
+        helloWorldServer.createServer();
+
+        URL urlPost = new URL("http://localhost:8080/names/fiona");
+        HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
+        connection.setRequestMethod("POST");
+
+        int responseCode = connection.getResponseCode();
+        connection.disconnect();
+
+        assertEquals(201, responseCode);
+
+        URL urlPost2 = new URL("http://localhost:8080/names/renae");
+        HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
+        connection2.setRequestMethod("POST");
+
+        int responseCode2 = connection2.getResponseCode();
+        connection2.disconnect();
+
+        assertEquals(201, responseCode2);
+
+        URL urlGet = new URL("http://localhost:8080/names/");
+        HttpURLConnection connection3 = (HttpURLConnection) urlGet.openConnection();
+        connection3.setRequestMethod("GET");
+
+        int responseCode3 = connection3.getResponseCode();
+
+        var bytes = connection3.getInputStream().readAllBytes();
+        var response = new String(bytes);
+
+        assertEquals(202, responseCode3 );
+
+        assertEquals("[Fiona, Renae]", response);
 
     }
 
