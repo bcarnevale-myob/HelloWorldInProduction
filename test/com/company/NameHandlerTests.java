@@ -135,4 +135,34 @@ public class NameHandlerTests {
 
     }
 
+    @Test
+    public void PutRequestsUpdatesANameToTheNameRepository() throws IOException, URISyntaxException {
+        NameRepository names = new InMemoryNameRepository();
+
+        NameHandler userHandler = new NameHandler(names);
+
+        HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest1.getRequestMethod()).thenReturn("POST");
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        userHandler.handle(mockRequest1);
+
+        verify(mockRequest1).sendResponseHeaders(201, 0);
+        verify(mockRequest1).close();
+
+        HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest2.getRequestMethod()).thenReturn("PUT");
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/bianca/hello"));
+
+        userHandler.handle(mockRequest2);
+
+        verify(mockRequest2).sendResponseHeaders(204, 0);
+        verify(mockRequest2).close();
+
+        assertTrue(names.get().contains("Hello"));
+        assertFalse(names.get().contains("Bianca"));
+
+    }
+
 }
