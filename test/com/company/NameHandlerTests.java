@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,6 +32,30 @@ public class NameHandlerTests {
         verify(mockRequest).close();
 
         assertTrue(names.get().contains("Bianca"));
+
+    }
+
+    @Test
+    public void PostRequestsAddTwoNamesToTheNameRepository() throws IOException, URISyntaxException {
+        NameRepository names = new InMemoryNameRepository();
+
+        NameHandler userHandler = new NameHandler(names);
+
+        HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest.getRequestMethod()).thenReturn("POST");
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest.getRequestMethod()).thenReturn("POST");
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/fiona"));
+
+        userHandler.handle(mockRequest);
+
+        verify(mockRequest).sendResponseHeaders(201, 0);
+        verify(mockRequest).close();
+
+        assertEquals("[Bianca, Fiona]", names.get());
+        assertTrue(names.get().contains("Bianca"));
+        assertTrue(names.get().contains("Fiona"));
 
     }
 
