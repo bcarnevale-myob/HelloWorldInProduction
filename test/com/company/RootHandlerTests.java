@@ -138,5 +138,3 @@ public class RootHandlerTests {
     }
 
 }
-// 2 tests: name added to response and name can be read from response
-// string compare to the regex
