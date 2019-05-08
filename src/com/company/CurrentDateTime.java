@@ -6,20 +6,20 @@ import java.util.Date;
 
 public class CurrentDateTime {
 
-    private String getCurrentDate() {
+    private String formatCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         Date date = new Date();
         return dateFormat.format(date);
     }
 
-    private String getCurrentTime() {
+    private String formatCurrentTime() {
         DateFormat timeFormat = new SimpleDateFormat("HH:mma");
         Date date = new Date();
         return timeFormat.format(date);
     }
 
     public String getCurrentDateAndTime() {
-        return getCurrentTime() + " on " + getCurrentDate();
+        return formatCurrentTime() + " on " + formatCurrentDate();
     }
 
 }
