@@ -7,9 +7,9 @@ public class InMemoryNameRepository implements NameRepository {
 
     private List<String> names;
 
-    public InMemoryNameRepository() {
+    public InMemoryNameRepository(String initialName) {
         this.names = new ArrayList<>();
-        names.add("Bianca");
+        names.add(initialName);
     }
 
     @Override

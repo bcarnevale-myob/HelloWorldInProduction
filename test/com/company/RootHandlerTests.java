@@ -17,7 +17,7 @@ public class RootHandlerTests {
 
     @BeforeEach
     public void setUp() throws IOException {
-        this.helloWorldServer = new HelloWorldServer(8080);
+        this.helloWorldServer = new HelloWorldServer(8080, "Bianca");
         this.helloWorldServer.createServer();
     }
 

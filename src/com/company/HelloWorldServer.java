@@ -12,9 +12,9 @@ public class HelloWorldServer {
     private final int port;
     private NameRepository names;
 
-    public HelloWorldServer(int port){
+    public HelloWorldServer(int port, String initialName){
         this.port = port;
-        this.names = new InMemoryNameRepository();
+        this.names = new InMemoryNameRepository(initialName);
     }
 
     public void createServer() throws IOException {

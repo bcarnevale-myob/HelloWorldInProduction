@@ -41,7 +41,7 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     public String getNamesToGreet() {
-        String myName = names.get().get(0);
+        String initialName = names.get().get(0);
         String andNames = "";
 
         for(int i = 0; i < names.get().size(); i++) {
@@ -52,7 +52,7 @@ public class RootHandler extends HelloWorldHandler {
             }
         }
 
-        return myName + andNames;
+        return initialName + andNames;
     }
 
 }
