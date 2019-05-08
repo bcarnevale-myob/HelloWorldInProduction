@@ -19,10 +19,8 @@ public class InMemoryNameRepository implements NameRepository {
 
     @Override
     public void add(String name) {
-        for(int i = 1; i < names.size(); i++) {
-            if(!(names.get(i).equals(name))) {
-                this.names.add(name);
-            }
+        if(!names.contains(name)) {
+            names.add(name);
         }
     }
 

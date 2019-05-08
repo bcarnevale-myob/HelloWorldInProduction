@@ -1,5 +1,7 @@
 package com.company;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -11,11 +13,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AcceptanceTest {
 
+    private HelloWorldServer helloWorldServer;
+
+    @BeforeEach
+    public void setUp() throws IOException {
+        this.helloWorldServer = new HelloWorldServer(8080);
+        this.helloWorldServer.createServer();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        this.helloWorldServer.stopServer();
+    }
+
     @Test
     public void helloWorldAcceptanceTest() throws IOException {
-        HelloWorldServer helloWorldServer = new HelloWorldServer(8080);
-
-        helloWorldServer.createServer();
 
         URL url = new URL("http://localhost:8080/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -34,7 +46,6 @@ class AcceptanceTest {
         assertEquals(200, responseCode);
         assertTrue(responseMatches, "\n" + response+ "\n" + expectedRegex.toString());
 
-        helloWorldServer.stopServer();
     }
 
 }
