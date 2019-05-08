@@ -51,8 +51,12 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private String greeting() {
+        return "Hello " + filterNames() + " - the time on the server is "  + getCurrentDateAndTime();
+    }
+
+    private String getCurrentDateAndTime() {
         var dateTime = new CurrentDateTime();
-        return "Hello " + filterNames() + " - the time on the server is "  + dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
+        return dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
     }
 
 }
