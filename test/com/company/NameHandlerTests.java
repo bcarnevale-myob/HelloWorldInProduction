@@ -128,8 +128,7 @@ public class NameHandlerTests {
         var bytes = connection3.getInputStream().readAllBytes();
         var response = new String(bytes);
 
-        assertEquals(202, responseCode3 );
-
+        assertEquals(202, responseCode3);
         assertEquals("[Bianca, Fiona, Renae]", response);
 
         helloWorldServer.stopServer();
