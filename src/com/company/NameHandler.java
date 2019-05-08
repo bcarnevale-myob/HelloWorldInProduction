@@ -43,9 +43,7 @@ public class NameHandler extends HelloWorldHandler {
     private void postHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(201, 0);
 
-        String nameFromPath = nameFromPath(request);
-
-        names.add(nameFromPath);
+        names.add(nameFromPath(request));
     }
 
     private void putHandler(HttpExchange request) throws IOException {
@@ -65,9 +63,7 @@ public class NameHandler extends HelloWorldHandler {
     private void deleteHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(200, 0);
 
-        String nameFromPath = nameFromPath(request);
-
-        names.remove(nameFromPath);
+        names.remove(nameFromPath(request));
     }
 
     private void notFound(HttpExchange request) throws IOException {
