@@ -43,11 +43,7 @@ public class NameHandler extends HelloWorldHandler {
     private void postHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(201, 0);
 
-        String path = request.getRequestURI().getPath();
-
-        String[] pathTokens = path.split("/");
-
-        String nameFromPath = pathTokens[pathTokens.length - 1];
+        String nameFromPath = nameFromPath(request);
         String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
         names.add(nameFormatted);
@@ -57,7 +53,6 @@ public class NameHandler extends HelloWorldHandler {
         request.sendResponseHeaders(204, 0);
 
         String path = request.getRequestURI().getPath();
-
         String[] pathTokens = path.split("/");
 
         String currentName = pathTokens[pathTokens.length - 2];
@@ -74,11 +69,7 @@ public class NameHandler extends HelloWorldHandler {
     private void deleteHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(200, 0);
 
-        String path = request.getRequestURI().getPath();
-
-        String[] pathTokens = path.split("/");
-
-        String nameFromPath = pathTokens[pathTokens.length - 1];
+        String nameFromPath = nameFromPath(request);
         String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
         names.remove(nameFormatted);
@@ -86,6 +77,12 @@ public class NameHandler extends HelloWorldHandler {
 
     private void notFound(HttpExchange request) throws IOException {
         request.sendResponseHeaders(404,0);
+    }
+
+    private String nameFromPath(HttpExchange request) {
+        String path = request.getRequestURI().getPath();
+        String[] pathTokens = path.split("/");
+        return pathTokens[pathTokens.length - 1];
     }
 
 }
