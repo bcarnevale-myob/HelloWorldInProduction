@@ -24,8 +24,7 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        var dateTime = new CurrentDateTime();
-        String response = "Hello Bianca" + filterNames() + " - the time on the server is "  + dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
+        String response = greeting();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
@@ -37,17 +36,23 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private String filterNames() {
+        String myName = names.get().get(0);
         String andNames = "";
 
         for(int i = 0; i < names.get().size(); i++) {
-            if(!(i == names.get().size() - 1)) {
+            if(!(i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
                 andNames += ", " + names.get().get(i);
-            } else if(i == names.get().size() - 1) {
+            } else if((i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
                 andNames += " and " + names.get().get(i);
             }
         }
 
-        return andNames;
+        return myName + andNames;
+    }
+
+    private String greeting() {
+        var dateTime = new CurrentDateTime();
+        return "Hello " + filterNames() + " - the time on the server is "  + dateTime.getCurrentTime() + " on " + dateTime.getCurrentDate();
     }
 
 }
