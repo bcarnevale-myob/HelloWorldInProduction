@@ -48,9 +48,9 @@ public class RootHandler extends HelloWorldHandler {
         String andNames = "";
 
         for(int i = 0; i < numberOfNames; i++) {
-            if(!(i == numberOfNames - 1) && !(allNames.get(i).equals("Bianca"))) {
+            if(!(i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
                 andNames += ", " + allNames.get(i);
-            } else if((i == numberOfNames - 1) && !(allNames.get(i).equals("Bianca"))) {
+            } else if((i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
                 andNames += " and " + allNames.get(i);
             }
         }
