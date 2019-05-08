@@ -18,26 +18,26 @@ public class NameHandlerTests {
 
     @Test
     public void PostRequestsAddsNameToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("Bianca");
+        NameRepository names = new InMemoryNameRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
 
         when(mockRequest.getRequestMethod()).thenReturn("POST");
-        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/fiona"));
 
         userHandler.handle(mockRequest);
 
         verify(mockRequest).sendResponseHeaders(201, 0);
         verify(mockRequest).close();
 
-        assertTrue(names.get().contains("Bianca"));
+        assertTrue(names.get().contains("fiona"));
 
     }
 
     @Test
     public void PostRequestsAddTwoNamesToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("Bianca");
+        NameRepository names = new InMemoryNameRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -59,14 +59,14 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(201, 0);
         verify(mockRequest2).close();
 
-        assertTrue(names.get().contains("Renae"));
-        assertTrue(names.get().contains("Fiona"));
+        assertTrue(names.get().contains("renae"));
+        assertTrue(names.get().contains("fiona"));
 
     }
 
     @Test
     public void DeleteRequestsRemovesANameFromTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("Bianca");
+        NameRepository names = new InMemoryNameRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -81,20 +81,20 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("DELETE");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/Renae"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/renae"));
 
         userHandler.handle(mockRequest2);
 
         verify(mockRequest2).sendResponseHeaders(200, 0);
         verify(mockRequest2).close();
 
-        assertFalse(names.get().contains("Renae"));
+        assertFalse(names.get().contains("renae"));
 
     }
 
     @Test
     public void GetRequestGetsAllNamesFromTheNameRepository() throws IOException {
-        HelloWorldServer helloWorldServer = new HelloWorldServer(8080, "Bianca");
+        HelloWorldServer helloWorldServer = new HelloWorldServer(8080, "bianca");
         helloWorldServer.createServer();
 
         URL urlPost1 = new URL("http://localhost:8080/names/fiona");
@@ -125,14 +125,14 @@ public class NameHandlerTests {
         var response = new String(bytes);
 
         assertEquals(202, responseCode3);
-        assertEquals("[Bianca, Fiona, Renae]", response);
+        assertEquals("[bianca, fiona, renae]", response);
 
         helloWorldServer.stopServer();
     }
 
     @Test
     public void PutRequestsUpdatesANameToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("Bianca");
+        NameRepository names = new InMemoryNameRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -147,21 +147,21 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("PUT");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona/hello"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona/renae"));
 
         userHandler.handle(mockRequest2);
 
         verify(mockRequest2).sendResponseHeaders(204, 0);
         verify(mockRequest2).close();
 
-        assertTrue(names.get().contains("Hello"));
-        assertFalse(names.get().contains("Fiona"));
+        assertTrue(names.get().contains("renae"));
+        assertFalse(names.get().contains("fiona"));
 
     }
 
     @Test
     public void PostRequestsOnlyAllowsUniqueNamesToBeAddedToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("Bianca");
+        NameRepository names = new InMemoryNameRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);

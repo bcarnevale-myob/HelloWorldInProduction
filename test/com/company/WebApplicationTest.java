@@ -15,7 +15,7 @@ public class WebApplicationTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-        this.helloWorldServer = new HelloWorldServer(8080, "Bianca");
+        this.helloWorldServer = new HelloWorldServer(8080, "bianca");
         this.helloWorldServer.createServer();
     }
 
