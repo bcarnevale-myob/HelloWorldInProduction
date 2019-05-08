@@ -75,7 +75,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/Renae"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -84,14 +84,14 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("DELETE");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/Renae"));
 
         userHandler.handle(mockRequest2);
 
         verify(mockRequest2).sendResponseHeaders(200, 0);
         verify(mockRequest2).close();
 
-        assertFalse(names.get().contains("Bianca"));
+        assertFalse(names.get().contains("Renae"));
 
     }
 
@@ -130,8 +130,9 @@ public class NameHandlerTests {
 
         assertEquals(202, responseCode3 );
 
-        assertEquals("[Fiona, Renae]", response);
+        assertEquals("[Bianca, Fiona, Renae]", response);
 
+        helloWorldServer.stopServer();
     }
 
     @Test
@@ -143,7 +144,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/fiona"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -152,7 +153,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("PUT");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/bianca/hello"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona/hello"));
 
         userHandler.handle(mockRequest2);
 
@@ -160,7 +161,7 @@ public class NameHandlerTests {
         verify(mockRequest2).close();
 
         assertTrue(names.get().contains("Hello"));
-        assertFalse(names.get().contains("Bianca"));
+        assertFalse(names.get().contains("Fiona"));
 
     }
 
