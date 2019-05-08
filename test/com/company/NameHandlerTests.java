@@ -191,4 +191,22 @@ public class NameHandlerTests {
 
     }
 
+    @Test
+    public void cannotRemoveInitialNameFromNameRepository() throws IOException, URISyntaxException {
+        NameRepository names = new InMemoryNameRepository("bianca");
+        NameHandler userHandler = new NameHandler(names);
+
+        HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest.getRequestMethod()).thenReturn("DELETE");
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/bianca"));
+
+        userHandler.handle(mockRequest);
+
+        verify(mockRequest).sendResponseHeaders(202, 0);
+        verify(mockRequest).close();
+
+        assertTrue(names.get().contains("bianca"));
+    }
+
 }
