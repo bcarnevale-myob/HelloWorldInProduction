@@ -34,7 +34,7 @@ public class NameHandler extends HelloWorldHandler {
 
     private void getHandler(HttpExchange request) throws IOException {
         String response = String.valueOf(names.get());
-        request.sendResponseHeaders(202, response.length());
+        request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
         outputStream.close();
@@ -61,7 +61,7 @@ public class NameHandler extends HelloWorldHandler {
     }
 
     private void deleteHandler(HttpExchange request) throws IOException {
-        request.sendResponseHeaders(200, 0);
+        request.sendResponseHeaders(202, 0);
 
         names.remove(nameFromPath(request));
     }

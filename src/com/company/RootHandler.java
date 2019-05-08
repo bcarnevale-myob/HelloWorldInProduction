@@ -41,7 +41,7 @@ public class RootHandler extends HelloWorldHandler {
         return "Hello " + getNamesToGreet() + " - the time on the server is "  + currentDateAndTime;
     }
 
-    public String getNamesToGreet() {
+    private String getNamesToGreet() {
         List<String> allNames = names.get();
         int numberOfNames = allNames.size();
         String initialName = allNames.get(0);
