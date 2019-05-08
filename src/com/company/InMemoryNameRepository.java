@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class InMemoryNameRepository implements NameRepository {
 
@@ -28,10 +27,8 @@ public class InMemoryNameRepository implements NameRepository {
 
     @Override
     public void remove(String name) {
-        for(int i = 1; i < names.size(); i++) {
-            if(names.get(i).equals(name) && !(names.get(i).equals(this.initialName))) {
-                names.remove(i);
-            }
+        if(!name.equals(this.initialName)) {
+            names.remove(name);
         }
     }
 }
