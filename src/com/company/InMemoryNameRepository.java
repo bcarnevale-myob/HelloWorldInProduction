@@ -25,7 +25,7 @@ public class InMemoryNameRepository implements NameRepository {
     @Override
     public void remove(String name) {
         for(int i = 1; i < names.size(); i++) {
-            if(names.get(i).equals(name)) {
+            if(names.get(i).equals(name) && !(names.get(i).equals("Bianca"))) {
                 names.remove(i);
             }
         }
