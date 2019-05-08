@@ -32,21 +32,4 @@ public class InMemoryNameRepository implements NameRepository {
             }
         }
     }
-
-    @Override
-    public String getNamesToGreet() {
-        String myName = names.get(0);
-        String andNames = "";
-
-        for(int i = 0; i < names.size(); i++) {
-            if(!(i == names.size() - 1) && !(names.get(i).equals("Bianca"))) {
-                andNames += ", " + names.get(i);
-            } else if((i == names.size() - 1) && !(names.get(i).equals("Bianca"))) {
-                andNames += " and " + names.get(i);
-            }
-        }
-
-        return myName + andNames;
-    }
-
 }

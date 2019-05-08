@@ -19,7 +19,6 @@ public class NameHandlerTests {
     @Test
     public void PostRequestsAddsNameToTheNameRepository() throws IOException, URISyntaxException {
         NameRepository names = new InMemoryNameRepository();
-
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
@@ -39,7 +38,6 @@ public class NameHandlerTests {
     @Test
     public void PostRequestsAddTwoNamesToTheNameRepository() throws IOException, URISyntaxException {
         NameRepository names = new InMemoryNameRepository();
-
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -69,7 +67,6 @@ public class NameHandlerTests {
     @Test
     public void DeleteRequestsRemovesANameFromTheNameRepository() throws IOException, URISyntaxException {
         NameRepository names = new InMemoryNameRepository();
-
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -98,11 +95,10 @@ public class NameHandlerTests {
     @Test
     public void GetRequestGetsAllNamesFromTheNameRepository() throws IOException {
         HelloWorldServer helloWorldServer = new HelloWorldServer(8080);
-
         helloWorldServer.createServer();
 
-        URL urlPost = new URL("http://localhost:8080/names/fiona");
-        HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
+        URL urlPost1 = new URL("http://localhost:8080/names/fiona");
+        HttpURLConnection connection = (HttpURLConnection) urlPost1.openConnection();
         connection.setRequestMethod("POST");
 
         int responseCode = connection.getResponseCode();
@@ -137,7 +133,6 @@ public class NameHandlerTests {
     @Test
     public void PutRequestsUpdatesANameToTheNameRepository() throws IOException, URISyntaxException {
         NameRepository names = new InMemoryNameRepository();
-
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
