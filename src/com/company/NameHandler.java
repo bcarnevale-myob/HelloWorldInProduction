@@ -45,7 +45,7 @@ public class NameHandler extends HelloWorldHandler {
 
         String nameFromPath = nameFromPath(request);
 
-        names.add(capitalise(nameFromPath));
+        names.add(nameFromPath);
     }
 
     private void putHandler(HttpExchange request) throws IOException {
@@ -57,8 +57,8 @@ public class NameHandler extends HelloWorldHandler {
         String nameToRemove = pathTokens[pathTokens.length - 2];
         String nameToReplace = pathTokens[pathTokens.length - 1];
 
-        names.remove(capitalise(nameToRemove));
-        names.add(capitalise(nameToReplace));
+        names.remove(nameToRemove);
+        names.add(nameToReplace);
 
     }
 
@@ -67,7 +67,7 @@ public class NameHandler extends HelloWorldHandler {
 
         String nameFromPath = nameFromPath(request);
 
-        names.remove(capitalise(nameFromPath));
+        names.remove(nameFromPath);
     }
 
     private void notFound(HttpExchange request) throws IOException {
@@ -78,10 +78,6 @@ public class NameHandler extends HelloWorldHandler {
         String path = request.getRequestURI().getPath();
         String[] pathTokens = path.split("/");
         return pathTokens[pathTokens.length - 1];
-    }
-
-    private String capitalise(String word) {
-        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
     }
 
 }
