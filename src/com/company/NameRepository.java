@@ -9,5 +9,4 @@ public interface NameRepository {
 
     void remove(String name);
 
-    String getNamesToGreet();
 }
