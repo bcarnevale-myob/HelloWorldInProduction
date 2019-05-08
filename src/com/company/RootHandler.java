@@ -35,24 +35,9 @@ public class RootHandler extends HelloWorldHandler {
         request.sendResponseHeaders(404,0);
     }
 
-    private String filterNames() {
-        String myName = names.get().get(0);
-        String andNames = "";
-
-        for(int i = 0; i < names.get().size(); i++) {
-            if(!(i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
-                andNames += ", " + names.get().get(i);
-            } else if((i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
-                andNames += " and " + names.get().get(i);
-            }
-        }
-
-        return myName + andNames;
-    }
-
     private String greeting() {
         var currentDateAndTime = new CurrentDateTime().getCurrentDateAndTime();
-        return "Hello " + filterNames() + " - the time on the server is "  + currentDateAndTime;
+        return "Hello " + names.getNamesToGreet() + " - the time on the server is "  + currentDateAndTime;
     }
 
 }

@@ -8,4 +8,6 @@ public interface NameRepository {
     void add(String name);
 
     void remove(String name);
+
+    String getNamesToGreet();
 }
