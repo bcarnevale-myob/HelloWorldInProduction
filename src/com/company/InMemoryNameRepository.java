@@ -9,6 +9,7 @@ public class InMemoryNameRepository implements NameRepository {
 
     public InMemoryNameRepository() {
         this.names = new ArrayList<>();
+        names.add("Bianca");
     }
 
     @Override
@@ -23,7 +24,7 @@ public class InMemoryNameRepository implements NameRepository {
 
     @Override
     public void remove(String name) {
-        for(int i = 0; i < names.size(); i++) {
+        for(int i = 1; i < names.size(); i++) {
             if(names.get(i).equals(name)) {
                 names.remove(i);
             }
