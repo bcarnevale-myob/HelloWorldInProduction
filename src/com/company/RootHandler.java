@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 public class RootHandler extends HelloWorldHandler {
 
@@ -41,14 +42,16 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     public String getNamesToGreet() {
-        String initialName = names.get().get(0);
+        List<String> allNames = names.get();
+        int numberOfNames = allNames.size();
+        String initialName = allNames.get(0);
         String andNames = "";
 
-        for(int i = 0; i < names.get().size(); i++) {
-            if(!(i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
-                andNames += ", " + names.get().get(i);
-            } else if((i == names.get().size() - 1) && !(names.get().get(i).equals("Bianca"))) {
-                andNames += " and " + names.get().get(i);
+        for(int i = 0; i < numberOfNames; i++) {
+            if(!(i == numberOfNames - 1) && !(allNames.get(i).equals("Bianca"))) {
+                andNames += ", " + allNames.get(i);
+            } else if((i == numberOfNames - 1) && !(allNames.get(i).equals("Bianca"))) {
+                andNames += " and " + allNames.get(i);
             }
         }
 
