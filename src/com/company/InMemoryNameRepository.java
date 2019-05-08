@@ -6,10 +6,12 @@ import java.util.List;
 public class InMemoryNameRepository implements NameRepository {
 
     private List<String> names;
+    private String initialName;
 
     public InMemoryNameRepository(String initialName) {
         this.names = new ArrayList<>();
-        names.add(initialName);
+        this.initialName = initialName;
+        names.add(this.initialName);
     }
 
     @Override
@@ -27,7 +29,7 @@ public class InMemoryNameRepository implements NameRepository {
     @Override
     public void remove(String name) {
         for(int i = 1; i < names.size(); i++) {
-            if(names.get(i).equals(name) && !(names.get(i).equals("Bianca"))) {
+            if(names.get(i).equals(name) && !(names.get(i).equals(this.initialName))) {
                 names.remove(i);
             }
         }
