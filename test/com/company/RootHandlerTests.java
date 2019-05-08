@@ -123,7 +123,7 @@ public class RootHandlerTests {
         int responseCode4 = connection4.getResponseCode();
         connection4.disconnect();
 
-        assertEquals(200, responseCode4);
+        assertEquals(202, responseCode4);
 
         URL urlGet = new URL("http://localhost:8080/");
         HttpURLConnection connection3 = (HttpURLConnection) urlGet.openConnection();

@@ -85,7 +85,7 @@ public class NameHandlerTests {
 
         userHandler.handle(mockRequest2);
 
-        verify(mockRequest2).sendResponseHeaders(200, 0);
+        verify(mockRequest2).sendResponseHeaders(202, 0);
         verify(mockRequest2).close();
 
         assertFalse(names.get().contains("renae"));
@@ -124,7 +124,7 @@ public class NameHandlerTests {
         var bytes = connection3.getInputStream().readAllBytes();
         var response = new String(bytes);
 
-        assertEquals(202, responseCode3);
+        assertEquals(200, responseCode3);
         assertEquals("[bianca, fiona, renae]", response);
 
         helloWorldServer.stopServer();

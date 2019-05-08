@@ -66,7 +66,7 @@ public class WebApplicationTest {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("DELETE");
         int responseCode = connection.getResponseCode();
-        assertEquals(200, responseCode);
+        assertEquals(202, responseCode);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class WebApplicationTest {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
-        assertEquals(202, responseCode);
+        assertEquals(200, responseCode);
     }
 
     @Test
