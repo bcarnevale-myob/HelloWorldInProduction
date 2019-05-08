@@ -45,7 +45,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/renae"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -61,7 +61,7 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(201, 0);
         verify(mockRequest2).close();
 
-        assertTrue(names.get().contains("Bianca"));
+        assertTrue(names.get().contains("Renae"));
         assertTrue(names.get().contains("Fiona"));
 
     }
@@ -162,6 +162,38 @@ public class NameHandlerTests {
 
         assertTrue(names.get().contains("Hello"));
         assertFalse(names.get().contains("Fiona"));
+
+    }
+
+    @Test
+    public void PostRequestsOnlyAllowsUniqueNamesToBeAddedToTheNameRepository() throws IOException, URISyntaxException {
+        NameRepository names = new InMemoryNameRepository();
+        NameHandler userHandler = new NameHandler(names);
+
+        HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest1.getRequestMethod()).thenReturn("POST");
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        userHandler.handle(mockRequest1);
+
+        verify(mockRequest1).sendResponseHeaders(201, 0);
+        verify(mockRequest1).close();
+
+        int previousNameRepositorySize = names.get().size();
+
+        HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
+
+        when(mockRequest2.getRequestMethod()).thenReturn("POST");
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona"));
+
+        userHandler.handle(mockRequest2);
+
+        verify(mockRequest2).sendResponseHeaders(201, 0);
+        verify(mockRequest2).close();
+
+        int currentNameRepositorySize = names.get().size();
+
+        assertEquals(previousNameRepositorySize, currentNameRepositorySize);
 
     }
 
