@@ -44,9 +44,8 @@ public class NameHandler extends HelloWorldHandler {
         request.sendResponseHeaders(201, 0);
 
         String nameFromPath = nameFromPath(request);
-        String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
-        names.add(nameFormatted);
+        names.add(capitalise(nameFromPath));
     }
 
     private void putHandler(HttpExchange request) throws IOException {
@@ -55,14 +54,11 @@ public class NameHandler extends HelloWorldHandler {
         String path = request.getRequestURI().getPath();
         String[] pathTokens = path.split("/");
 
-        String currentName = pathTokens[pathTokens.length - 2];
-        String updatedName = pathTokens[pathTokens.length - 1];
+        String nameToRemove = pathTokens[pathTokens.length - 2];
+        String nameToReplace = pathTokens[pathTokens.length - 1];
 
-        String currentNameFormatted = currentName.substring(0,1).toUpperCase() + currentName.substring(1).toLowerCase();
-        String updatedNameFormatted = updatedName.substring(0,1).toUpperCase() + updatedName.substring(1).toLowerCase();
-
-        names.remove(currentNameFormatted);
-        names.add(updatedNameFormatted);
+        names.remove(capitalise(nameToRemove));
+        names.add(capitalise(nameToReplace));
 
     }
 
@@ -70,9 +66,8 @@ public class NameHandler extends HelloWorldHandler {
         request.sendResponseHeaders(200, 0);
 
         String nameFromPath = nameFromPath(request);
-        String nameFormatted = nameFromPath.substring(0,1).toUpperCase() + nameFromPath.substring(1).toLowerCase();
 
-        names.remove(nameFormatted);
+        names.remove(capitalise(nameFromPath));
     }
 
     private void notFound(HttpExchange request) throws IOException {
@@ -83,6 +78,10 @@ public class NameHandler extends HelloWorldHandler {
         String path = request.getRequestURI().getPath();
         String[] pathTokens = path.split("/");
         return pathTokens[pathTokens.length - 1];
+    }
+
+    private String capitalise(String word) {
+        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
     }
 
 }
