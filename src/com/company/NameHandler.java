@@ -52,11 +52,11 @@ public class NameHandler extends HelloWorldHandler {
         String path = request.getRequestURI().getPath();
         String[] pathTokens = path.split("/");
 
-        String nameToRemove = pathTokens[pathTokens.length - 2];
-        String nameToReplace = pathTokens[pathTokens.length - 1];
+        String oldName = pathTokens[pathTokens.length - 2];
+        String newName = pathTokens[pathTokens.length - 1];
 
-        names.remove(nameToRemove);
-        names.add(nameToReplace);
+        names.remove(oldName);
+        names.add(newName);
 
     }
 
