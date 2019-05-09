@@ -30,5 +30,19 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = "HelloWorld.App"
+    mainClassName = "com.company.Main"
+}
+
+sourceSets {
+    main {
+        java {
+            setSrcDirs(listOf("src"))
+        }
+    }
+
+    test {
+        java {
+            setSrcDirs(listOf("test"))
+        }
+    }
 }
