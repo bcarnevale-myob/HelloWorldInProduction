@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RootHandler extends HelloWorldHandler {
 
-    public RootHandler(NameRepository names) {
+    public RootHandler(UserRepository names) {
         super(names);
     }
 

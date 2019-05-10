@@ -2,8 +2,8 @@ package com.company;
 
 import java.util.List;
 
-public interface NameRepository {
-    List<String> get();
+public interface UserRepository {
+    List<User> get();
 
     void add(String name);
 

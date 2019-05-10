@@ -18,7 +18,7 @@ public class NameHandlerTests {
 
     @Test
     public void PostRequestsAddsNameToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
@@ -37,7 +37,7 @@ public class NameHandlerTests {
 
     @Test
     public void PostRequestsAddTwoNamesToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -66,7 +66,7 @@ public class NameHandlerTests {
 
     @Test
     public void DeleteRequestsRemovesANameFromTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -132,7 +132,7 @@ public class NameHandlerTests {
 
     @Test
     public void PutRequestsUpdatesANameToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -161,7 +161,7 @@ public class NameHandlerTests {
 
     @Test
     public void PostRequestsOnlyAllowsUniqueNamesToBeAddedToTheNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
@@ -193,7 +193,7 @@ public class NameHandlerTests {
 
     @Test
     public void cannotRemoveInitialNameFromNameRepository() throws IOException, URISyntaxException {
-        NameRepository names = new InMemoryNameRepository("bianca");
+        UserRepository names = new InMemoryUserRepository("bianca");
         NameHandler userHandler = new NameHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);

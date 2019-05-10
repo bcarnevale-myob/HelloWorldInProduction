@@ -10,11 +10,11 @@ public class HelloWorldServer {
     private HttpServer server;
     private InetSocketAddress socket;
     private final int port;
-    private NameRepository names;
+    private UserRepository names;
 
     public HelloWorldServer(int port, String initialName){
         this.port = port;
-        this.names = new InMemoryNameRepository(initialName);
+        this.names = new InMemoryUserRepository(initialName);
     }
 
     public void createServer() throws IOException {

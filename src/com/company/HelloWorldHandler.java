@@ -4,10 +4,10 @@ import com.sun.net.httpserver.HttpHandler;
 
 public abstract class HelloWorldHandler implements HttpHandler {
 
-    public HelloWorldHandler(NameRepository names) {
+    public HelloWorldHandler(UserRepository names) {
         this.names = names;
     }
 
-    protected NameRepository names;
+    protected UserRepository names;
 
 }

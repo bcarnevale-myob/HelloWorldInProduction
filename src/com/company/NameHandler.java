@@ -7,7 +7,7 @@ import java.io.OutputStream;
 
 public class NameHandler extends HelloWorldHandler {
 
-    public NameHandler(NameRepository names) {
+    public NameHandler(UserRepository names) {
         super(names);
     }
 
