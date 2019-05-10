@@ -21,7 +21,7 @@ public class HelloWorldServer {
         this.socket = new InetSocketAddress(port);
         this.server = HttpServer.create(socket, 0);
         this.server.createContext("/", new RootHandler(names));
-        this.server.createContext("/names/", new NameHandler(names));
+        this.server.createContext("/users/", new UserHandler(names));
         this.server.setExecutor(null);
         this.server.start();
     }

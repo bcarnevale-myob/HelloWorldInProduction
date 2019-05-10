@@ -51,7 +51,7 @@ class AcceptanceTest {
 
     @Test
     public void helloWorldAcceptanceTestWithAddedNames() throws IOException {
-        URL urlPost = new URL("http://localhost:8080/names/fiona");
+        URL urlPost = new URL("http://localhost:8080/users/fiona");
         HttpURLConnection connectionPost = (HttpURLConnection) urlPost.openConnection();
         connectionPost.setRequestMethod("POST");
 

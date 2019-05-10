@@ -3,10 +3,10 @@ package com.company;
 import java.util.List;
 
 public interface UserRepository {
-    List<User> get();
+    List<String> get();
 
-    void add(String name);
+    void add(String username);
 
-    void remove(String name);
+    void remove(String username);
 
 }

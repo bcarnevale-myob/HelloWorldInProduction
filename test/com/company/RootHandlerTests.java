@@ -29,7 +29,7 @@ public class RootHandlerTests {
     @Test
     public void aNameCanBeAddedToTheResponse() throws IOException {
 
-        URL urlPost = new URL("http://localhost:8080/names/fiona");
+        URL urlPost = new URL("http://localhost:8080/users/fiona");
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -59,7 +59,7 @@ public class RootHandlerTests {
     @Test
     public void TwoNamesCanBeAddedToTheResponse() throws IOException {
 
-        URL urlPost = new URL("http://localhost:8080/names/fiona");
+        URL urlPost = new URL("http://localhost:8080/users/fiona");
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -68,7 +68,7 @@ public class RootHandlerTests {
 
         assertEquals(201, responseCode);
 
-        URL urlPost2 = new URL("http://localhost:8080/names/renae");
+        URL urlPost2 = new URL("http://localhost:8080/users/renae");
         HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
         connection2.setRequestMethod("POST");
 
@@ -98,7 +98,7 @@ public class RootHandlerTests {
     @Test
     public void ANameCanBeRemovedFromTheResponse() throws IOException {
 
-        URL urlPost = new URL("http://localhost:8080/names/fiona");
+        URL urlPost = new URL("http://localhost:8080/users/fiona");
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -107,7 +107,7 @@ public class RootHandlerTests {
 
         assertEquals(201, responseCode);
 
-        URL urlPost2 = new URL("http://localhost:8080/names/renae");
+        URL urlPost2 = new URL("http://localhost:8080/users/renae");
         HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
         connection2.setRequestMethod("POST");
 
@@ -116,7 +116,7 @@ public class RootHandlerTests {
 
         assertEquals(201, responseCode2);
 
-        URL urlDelete = new URL("http://localhost:8080/names/renae");
+        URL urlDelete = new URL("http://localhost:8080/users/renae");
         HttpURLConnection connection3 = (HttpURLConnection) urlDelete.openConnection();
         connection3.setRequestMethod("DELETE");
 

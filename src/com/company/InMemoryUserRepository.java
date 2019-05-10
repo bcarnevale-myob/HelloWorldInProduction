@@ -4,33 +4,31 @@ import java.util.*;
 
 public class InMemoryUserRepository implements UserRepository {
 
-    private List<User> users;
+    private List<String> names;
     private String initialName;
 
     public InMemoryUserRepository(String initialName) {
-        this.users = new ArrayList<>();
+        this.names = new ArrayList<>();
         this.initialName = initialName;
-        User owner = new User((long) 1, initialName, true);
-        users.add(owner);
+        names.add(this.initialName);
     }
 
     @Override
-    public List<User> get() {
-        return this.users;
+    public List<String> get() {
+        return this.names;
     }
 
     @Override
-    public void add(String name) {
-        User newUser = new User(name);
-        if(newUser.isOwner) {
-            users.add(newUser);
+    public void add(String username) {
+        if(!names.contains(username)) {
+            names.add(username);
         }
     }
 
     @Override
-    public void remove(String name) {
-        if(!name.equals(this.initialName)) {
-            users.remove(name);
+    public void remove(String username) {
+        if(!username.equals(this.initialName)) {
+            names.remove(username);
         }
     }
 }

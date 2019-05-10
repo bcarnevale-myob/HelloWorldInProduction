@@ -53,7 +53,7 @@ public class WebApplicationTest {
 
     @Test
     public void nameEndPointAllowsPostRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/names/");
+        URL url = new URL("http://localhost:8080/users/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         int responseCode = connection.getResponseCode();
@@ -62,7 +62,7 @@ public class WebApplicationTest {
 
     @Test
     public void nameEndPointAllowsDeleteRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/names/");
+        URL url = new URL("http://localhost:8080/users/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("DELETE");
         int responseCode = connection.getResponseCode();
@@ -71,7 +71,7 @@ public class WebApplicationTest {
 
     @Test
     public void nameEndPointAllowsGetRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/names/");
+        URL url = new URL("http://localhost:8080/users/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
@@ -80,7 +80,7 @@ public class WebApplicationTest {
 
     @Test
     public void nameEndPointAllowsPutRequest() throws IOException {
-        URL url = new URL("http://localhost:8080/names/");
+        URL url = new URL("http://localhost:8080/users/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("PUT");
         int responseCode = connection.getResponseCode();

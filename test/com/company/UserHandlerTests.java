@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class NameHandlerTests {
+public class UserHandlerTests {
 
     @Test
     public void PostRequestsAddsNameToTheNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
 
         when(mockRequest.getRequestMethod()).thenReturn("POST");
-        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/users/fiona"));
 
         userHandler.handle(mockRequest);
 
@@ -38,12 +38,12 @@ public class NameHandlerTests {
     @Test
     public void PostRequestsAddTwoNamesToTheNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/renae"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/users/renae"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -52,7 +52,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("POST");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/users/fiona"));
 
         userHandler.handle(mockRequest2);
 
@@ -67,12 +67,12 @@ public class NameHandlerTests {
     @Test
     public void DeleteRequestsRemovesANameFromTheNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/Renae"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/users/Renae"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -81,7 +81,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("DELETE");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/renae"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/users/renae"));
 
         userHandler.handle(mockRequest2);
 
@@ -97,7 +97,7 @@ public class NameHandlerTests {
         HelloWorldServer helloWorldServer = new HelloWorldServer(8080, "bianca");
         helloWorldServer.createServer();
 
-        URL urlPost1 = new URL("http://localhost:8080/names/fiona");
+        URL urlPost1 = new URL("http://localhost:8080/users/fiona");
         HttpURLConnection connection = (HttpURLConnection) urlPost1.openConnection();
         connection.setRequestMethod("POST");
 
@@ -106,7 +106,7 @@ public class NameHandlerTests {
 
         assertEquals(201, responseCode);
 
-        URL urlPost2 = new URL("http://localhost:8080/names/renae");
+        URL urlPost2 = new URL("http://localhost:8080/users/renae");
         HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
         connection2.setRequestMethod("POST");
 
@@ -115,7 +115,7 @@ public class NameHandlerTests {
 
         assertEquals(201, responseCode2);
 
-        URL urlGet = new URL("http://localhost:8080/names/");
+        URL urlGet = new URL("http://localhost:8080/users/");
         HttpURLConnection connection3 = (HttpURLConnection) urlGet.openConnection();
         connection3.setRequestMethod("GET");
 
@@ -133,12 +133,12 @@ public class NameHandlerTests {
     @Test
     public void PutRequestsUpdatesANameToTheNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/users/fiona"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -147,7 +147,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("PUT");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona/renae"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/users/fiona/renae"));
 
         userHandler.handle(mockRequest2);
 
@@ -162,12 +162,12 @@ public class NameHandlerTests {
     @Test
     public void PostRequestsOnlyAllowsUniqueNamesToBeAddedToTheNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest1 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest1.getRequestMethod()).thenReturn("POST");
-        when(mockRequest1.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest1.getRequestURI()).thenReturn(new URI("/users/fiona"));
         userHandler.handle(mockRequest1);
 
         verify(mockRequest1).sendResponseHeaders(201, 0);
@@ -178,7 +178,7 @@ public class NameHandlerTests {
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
         when(mockRequest2.getRequestMethod()).thenReturn("POST");
-        when(mockRequest2.getRequestURI()).thenReturn(new URI("/names/fiona"));
+        when(mockRequest2.getRequestURI()).thenReturn(new URI("/users/fiona"));
 
         userHandler.handle(mockRequest2);
 
@@ -194,12 +194,12 @@ public class NameHandlerTests {
     @Test
     public void cannotRemoveInitialNameFromNameRepository() throws IOException, URISyntaxException {
         UserRepository names = new InMemoryUserRepository("bianca");
-        NameHandler userHandler = new NameHandler(names);
+        UserHandler userHandler = new UserHandler(names);
 
         HttpExchange mockRequest = Mockito.mock(HttpExchange.class);
 
         when(mockRequest.getRequestMethod()).thenReturn("DELETE");
-        when(mockRequest.getRequestURI()).thenReturn(new URI("/names/bianca"));
+        when(mockRequest.getRequestURI()).thenReturn(new URI("/users/bianca"));
 
         userHandler.handle(mockRequest);
 

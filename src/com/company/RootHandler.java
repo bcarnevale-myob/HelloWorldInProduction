@@ -42,7 +42,7 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private String getNamesToGreet() {
-        List<String> allNames = names.get();
+        List<String> allNames = users.get();
         int numberOfNames = allNames.size();
         String initialName = allNames.get(0);
         String andNames = "";

@@ -5,10 +5,10 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class NameHandler extends HelloWorldHandler {
+public class UserHandler extends HelloWorldHandler {
 
-    public NameHandler(UserRepository names) {
-        super(names);
+    public UserHandler(UserRepository users) {
+        super(users);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class NameHandler extends HelloWorldHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        String response = String.valueOf(names.get());
+        String response = String.valueOf(users.get());
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
@@ -43,7 +43,7 @@ public class NameHandler extends HelloWorldHandler {
     private void postHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(201, 0);
 
-        names.add(nameFromPath(request));
+        users.add(nameFromPath(request));
     }
 
     private void putHandler(HttpExchange request) throws IOException {
@@ -55,15 +55,15 @@ public class NameHandler extends HelloWorldHandler {
         String oldName = pathTokens[pathTokens.length - 2];
         String newName = pathTokens[pathTokens.length - 1];
 
-        names.remove(oldName);
-        names.add(newName);
+        users.remove(oldName);
+        users.add(newName);
 
     }
 
     private void deleteHandler(HttpExchange request) throws IOException {
         request.sendResponseHeaders(202, 0);
 
-        names.remove(nameFromPath(request));
+        users.remove(nameFromPath(request));
     }
 
     private void notFound(HttpExchange request) throws IOException {
