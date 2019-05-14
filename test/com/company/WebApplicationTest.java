@@ -54,6 +54,7 @@ public class WebApplicationTest {
     @Test
     public void nameEndPointAllowsPostRequest() throws IOException {
         URL url = new URL("http://localhost:8080/users/");
+
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("POST");
         int responseCode = connection.getResponseCode();

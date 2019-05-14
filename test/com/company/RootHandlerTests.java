@@ -30,6 +30,7 @@ public class RootHandlerTests {
     public void aNameCanBeAddedToTheResponse() throws IOException {
 
         URL urlPost = new URL("http://localhost:8080/users/fiona");
+
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -60,6 +61,7 @@ public class RootHandlerTests {
     public void TwoNamesCanBeAddedToTheResponse() throws IOException {
 
         URL urlPost = new URL("http://localhost:8080/users/fiona");
+
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -69,6 +71,7 @@ public class RootHandlerTests {
         assertEquals(201, responseCode);
 
         URL urlPost2 = new URL("http://localhost:8080/users/renae");
+
         HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
         connection2.setRequestMethod("POST");
 
@@ -99,6 +102,7 @@ public class RootHandlerTests {
     public void ANameCanBeRemovedFromTheResponse() throws IOException {
 
         URL urlPost = new URL("http://localhost:8080/users/fiona");
+
         HttpURLConnection connection = (HttpURLConnection) urlPost.openConnection();
         connection.setRequestMethod("POST");
 
@@ -108,6 +112,7 @@ public class RootHandlerTests {
         assertEquals(201, responseCode);
 
         URL urlPost2 = new URL("http://localhost:8080/users/renae");
+
         HttpURLConnection connection2 = (HttpURLConnection) urlPost2.openConnection();
         connection2.setRequestMethod("POST");
 

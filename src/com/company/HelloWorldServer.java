@@ -15,6 +15,7 @@ public class HelloWorldServer {
     public HelloWorldServer(int port, String initialName){
         this.port = port;
         this.names = new InMemoryUserRepository(initialName);
+
     }
 
     public void createServer() throws IOException {
@@ -22,6 +23,7 @@ public class HelloWorldServer {
         this.server = HttpServer.create(socket, 0);
         this.server.createContext("/", new RootHandler(names));
         this.server.createContext("/users/", new UserHandler(names));
+
         this.server.setExecutor(null);
         this.server.start();
     }
