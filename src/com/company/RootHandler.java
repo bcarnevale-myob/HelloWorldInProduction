@@ -8,7 +8,8 @@ import java.util.List;
 
 public class RootHandler extends HelloWorldHandler {
 
-    public RootHandler(NameRepository names) {
+    public RootHandler(UserRepository names) {
+
         super(names);
     }
 
@@ -42,7 +43,8 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private String getNamesToGreet() {
-        List<String> allNames = names.get();
+        List<String> allNames = users.get();
+
         int numberOfNames = allNames.size();
         String initialName = allNames.get(0);
         String andNames = "";
