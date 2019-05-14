@@ -9,7 +9,7 @@ public class InMemoryNameRepository implements NameRepository {
 
     public InMemoryNameRepository(String initialName) {
         this.names = new ArrayList<>();
-        this.initialName = initialName;
+        this.initialName = capitalise(initialName);
         names.add(this.initialName);
     }
 
@@ -21,7 +21,7 @@ public class InMemoryNameRepository implements NameRepository {
     @Override
     public void add(String name) {
         if(!names.contains(name)) {
-            names.add(name);
+            names.add(capitalise(name));
         }
     }
 
@@ -30,5 +30,9 @@ public class InMemoryNameRepository implements NameRepository {
         if(!name.equals(this.initialName)) {
             names.remove(name);
         }
+    }
+
+    private String capitalise(String word) {
+        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
     }
 }

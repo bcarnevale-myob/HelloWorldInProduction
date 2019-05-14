@@ -49,18 +49,16 @@ public class RootHandler extends HelloWorldHandler {
 
         for(int i = 0; i < numberOfNames; i++) {
             if(!(i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += ", " + capitalise(allNames.get(i));
+                andNames += ", " + allNames.get(i);
             } else if((i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += " and " + capitalise(allNames.get(i));
+                andNames += " and " + allNames.get(i);
             }
         }
 
-        return capitalise(initialName) + andNames;
+        return initialName + andNames;
     }
 
-    private String capitalise(String word) {
-        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
-    }
+
 
 }
 
