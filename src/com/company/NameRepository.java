@@ -1,13 +1,13 @@
 package com.company;
 
-import java.util.List;
+import java.util.Collection;
 
-public interface NameRepository extends List<String> {
+public interface NameRepository extends Collection<String> {
 
     boolean add(String name);
 
     boolean remove(String name);
 
-    String getInitialName();
+    String getYourName();
 
 }

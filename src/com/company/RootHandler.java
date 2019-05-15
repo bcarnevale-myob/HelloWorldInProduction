@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 
 public class RootHandler extends HelloWorldHandler {
 
@@ -25,7 +24,7 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        String response = greeting();
+        String response = createGreeting();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
@@ -36,19 +35,18 @@ public class RootHandler extends HelloWorldHandler {
         request.sendResponseHeaders(404,0);
     }
 
-    private String greeting() {
+    private String createGreeting() {
         var currentDateAndTime = new CurrentDateTime().getCurrentDateAndTime();
         return "Hello " + getNamesToGreet() + " - the time on the server is "  + currentDateAndTime;
     }
 
     private String getNamesToGreet() {
-        String namesToDisplay = names.getInitialName();
-        int numberOfNames = names.size();
-        String finalNameInList = names.get(numberOfNames - 1);
+        String namesToDisplay = names.getYourName();
+        int displayedNames = 1;
 
         for(String name : names) {
-            if(!(name.equals(names.getInitialName()))) {
-                if(name == finalNameInList) {
+            if(!(name.equals(names.getYourName()))) {
+                if(++displayedNames == names.size()) {
                     namesToDisplay += " and " + name;
                 } else {
                     namesToDisplay += ", " + name;
