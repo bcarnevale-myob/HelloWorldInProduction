@@ -2,33 +2,34 @@ package com.company;
 
 import java.util.*;
 
-public class InMemoryNameRepository implements NameRepository {
+public class InMemoryNameRepository extends LinkedHashSet<String> implements NameRepository {
 
-    private List<String> names;
-    private String initialName;
+    private String yourName;
 
-    public InMemoryNameRepository(String initialName) {
-        this.names = new ArrayList<>();
-        this.initialName = initialName;
-        names.add(this.initialName);
+    public InMemoryNameRepository(String yourName) {
+        this.yourName = capitalise(yourName);
+        super.add(this.yourName);
     }
 
     @Override
-    public List<String> get() {
-        return this.names;
+    public boolean add(String name) {
+        return super.add(capitalise(name));
     }
 
     @Override
-    public void add(String name) {
-        if(!names.contains(name)) {
-            names.add(name);
+    public boolean remove(String name) {
+        if (this.yourName.equals(capitalise(name))) {
+            return false;
         }
+        return super.remove(capitalise(name));
     }
 
     @Override
-    public void remove(String name) {
-        if(!name.equals(this.initialName)) {
-            names.remove(name);
-        }
+    public String getYourName() {
+        return this.yourName;
+    }
+
+    private String capitalise(String word) {
+        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
     }
 }

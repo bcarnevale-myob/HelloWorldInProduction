@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
 
 public class RootHandler extends HelloWorldHandler {
 
@@ -26,7 +25,7 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        String response = greeting();
+        String response = createGreeting();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());
@@ -37,32 +36,30 @@ public class RootHandler extends HelloWorldHandler {
         request.sendResponseHeaders(404,0);
     }
 
-    private String greeting() {
+    private String createGreeting() {
         var currentDateAndTime = new CurrentDateTime().getCurrentDateAndTime();
         return "Hello " + getNamesToGreet() + " - the time on the server is "  + currentDateAndTime;
     }
 
     private String getNamesToGreet() {
-        List<String> allNames = users.get();
+        String namesToDisplay = names.getYourName();
+        int displayedNames = 1;
 
-        int numberOfNames = allNames.size();
-        String initialName = allNames.get(0);
-        String andNames = "";
+        for(String name : names) {
+            if(!(name.equals(names.getYourName()))) {
+                if(++displayedNames == names.size()) {
+                    namesToDisplay += " and " + name;
+                } else {
+                    namesToDisplay += ", " + name;
+                }
 
-        for(int i = 0; i < numberOfNames; i++) {
-            if(!(i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += ", " + capitalise(allNames.get(i));
-            } else if((i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += " and " + capitalise(allNames.get(i));
             }
         }
 
-        return capitalise(initialName) + andNames;
+        return namesToDisplay;
     }
 
-    private String capitalise(String word) {
-        return word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase();
-    }
+
 
 }
 
