@@ -151,7 +151,7 @@ public class NameHandlerTests {
 
         userHandler.handle(mockRequest2);
 
-        verify(mockRequest2).sendResponseHeaders(204, 0);
+        verify(mockRequest2).sendResponseHeaders(204, -1);
         verify(mockRequest2).close();
 
         assertTrue(names.contains("Renae"));

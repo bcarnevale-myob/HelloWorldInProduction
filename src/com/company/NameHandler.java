@@ -13,44 +13,44 @@ public class NameHandler extends HelloWorldHandler {
 
     @Override
     public void handle(HttpExchange request) throws IOException {
-        switch(request.getRequestMethod()){
-            case "GET":
-                getHandler(request);
-                break;
-            case "POST":
-                postHandler(request);
-                break;
-            case "PUT":
-                putHandler(request);
-                break;
-            case "DELETE":
-                deleteHandler(request);
-                break;
-            default:
-                notFound(request);
-        }
+            switch (request.getRequestMethod()) {
+                case "GET":
+                    getHandler(request);
+                    break;
+                case "POST":
+                    postHandler(request);
+                    break;
+                case "PUT":
+                    putHandler(request);
+                    break;
+                case "DELETE":
+                    deleteHandler(request);
+                    break;
+                default:
+                    notFound(request);
+            }
         request.close();
     }
 
     private void getHandler(HttpExchange request) throws IOException {
         String response = names.toString();
-        request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
+        request.sendResponseHeaders(200, response.length());
         outputStream.write(response.getBytes());
         outputStream.close();
     }
 
     private void postHandler(HttpExchange request) throws IOException {
-        request.sendResponseHeaders(201, 0);
-
         names.add(nameFromPath(request));
+        request.sendResponseHeaders(201, 0);
     }
 
     private void putHandler(HttpExchange request) throws IOException {
-        request.sendResponseHeaders(204, 0);
 
         String path = request.getRequestURI().getPath();
         String[] pathTokens = path.split("/");
+
+        request.sendResponseHeaders(204, -1);
 
         String oldName = pathTokens[pathTokens.length - 2];
         String newName = pathTokens[pathTokens.length - 1];
@@ -61,9 +61,8 @@ public class NameHandler extends HelloWorldHandler {
     }
 
     private void deleteHandler(HttpExchange request) throws IOException {
-        request.sendResponseHeaders(202, 0);
-
         names.remove(nameFromPath(request));
+        request.sendResponseHeaders(202, 0);
     }
 
     private void notFound(HttpExchange request) throws IOException {
