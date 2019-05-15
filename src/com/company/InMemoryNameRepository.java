@@ -2,34 +2,43 @@ package com.company;
 
 import java.util.*;
 
-public class InMemoryNameRepository implements NameRepository {
+public class InMemoryNameRepository extends ArrayList<String> implements NameRepository {
 
-    private List<String> names;
     private String initialName;
 
     public InMemoryNameRepository(String initialName) {
-        this.names = new ArrayList<>();
         this.initialName = capitalise(initialName);
-        names.add(this.initialName);
+        super.add(this.initialName);
     }
 
     @Override
-    public List<String> get() {
-        return this.names;
-    }
-
-    @Override
-    public void add(String name) {
-        if(!names.contains(name)) {
-            names.add(capitalise(name));
+    public boolean add(String name) {
+        String nameAsStored = capitalise(name);
+        if(!super.contains(nameAsStored)) {
+            super.add(nameAsStored);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void remove(String name) {
-        if(!name.equals(this.initialName)) {
-            names.remove(name);
+    public boolean remove(String name) {
+        String nameAsStored = capitalise(name);
+        if(!nameAsStored.equals(this.initialName)) {
+            super.remove(nameAsStored);
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public String getInitialName() {
+        return this.initialName;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     private String capitalise(String word) {

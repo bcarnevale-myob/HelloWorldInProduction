@@ -42,20 +42,21 @@ public class RootHandler extends HelloWorldHandler {
     }
 
     private String getNamesToGreet() {
-        List<String> allNames = names.get();
-        int numberOfNames = allNames.size();
-        String initialName = allNames.get(0);
-        String andNames = "";
+        String namesToDisplay = names.getInitialName();
+        int numberOfNames = names.size();
+        String finalNameInList = names.get(numberOfNames - 1);
 
-        for(int i = 0; i < numberOfNames; i++) {
-            if(!(i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += ", " + allNames.get(i);
-            } else if((i == numberOfNames - 1) && !(allNames.get(i).equals(initialName))) {
-                andNames += " and " + allNames.get(i);
+        for(String name : names) {
+            if(!(name.equals(names.getInitialName()))) {
+                if(name == finalNameInList) {
+                    namesToDisplay += " and " + name;
+                } else {
+                    namesToDisplay += ", " + name;
+                }
             }
         }
 
-        return initialName + andNames;
+        return namesToDisplay;
     }
 
 

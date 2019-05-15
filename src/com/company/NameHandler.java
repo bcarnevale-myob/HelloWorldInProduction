@@ -33,7 +33,7 @@ public class NameHandler extends HelloWorldHandler {
     }
 
     private void getHandler(HttpExchange request) throws IOException {
-        String response = String.valueOf(names.get());
+        String response = names.toString();
         request.sendResponseHeaders(200, response.length());
         OutputStream outputStream = request.getResponseBody();
         outputStream.write(response.getBytes());

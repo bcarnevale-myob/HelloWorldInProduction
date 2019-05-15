@@ -31,7 +31,7 @@ public class NameHandlerTests {
         verify(mockRequest).sendResponseHeaders(201, 0);
         verify(mockRequest).close();
 
-        assertTrue(names.get().contains("fiona"));
+        assertTrue(names.contains("Fiona"));
 
     }
 
@@ -59,8 +59,8 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(201, 0);
         verify(mockRequest2).close();
 
-        assertTrue(names.get().contains("renae"));
-        assertTrue(names.get().contains("fiona"));
+        assertTrue(names.contains("Renae"));
+        assertTrue(names.contains("Fiona"));
 
     }
 
@@ -88,7 +88,7 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(202, 0);
         verify(mockRequest2).close();
 
-        assertFalse(names.get().contains("renae"));
+        assertFalse(names.contains("Renae"));
 
     }
 
@@ -125,7 +125,7 @@ public class NameHandlerTests {
         var response = new String(bytes);
 
         assertEquals(200, responseCode3);
-        assertEquals("[bianca, fiona, renae]", response);
+        assertEquals("[Bianca, Fiona, Renae]", response);
 
         helloWorldServer.stopServer();
     }
@@ -154,8 +154,8 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(204, 0);
         verify(mockRequest2).close();
 
-        assertTrue(names.get().contains("renae"));
-        assertFalse(names.get().contains("fiona"));
+        assertTrue(names.contains("Renae"));
+        assertFalse(names.contains("Fiona"));
 
     }
 
@@ -173,7 +173,7 @@ public class NameHandlerTests {
         verify(mockRequest1).sendResponseHeaders(201, 0);
         verify(mockRequest1).close();
 
-        int previousNameRepositorySize = names.get().size();
+        int previousNameRepositorySize = names.size();
 
         HttpExchange mockRequest2 = Mockito.mock(HttpExchange.class);
 
@@ -185,7 +185,7 @@ public class NameHandlerTests {
         verify(mockRequest2).sendResponseHeaders(201, 0);
         verify(mockRequest2).close();
 
-        int currentNameRepositorySize = names.get().size();
+        int currentNameRepositorySize = names.size();
 
         assertEquals(previousNameRepositorySize, currentNameRepositorySize);
 
@@ -206,7 +206,7 @@ public class NameHandlerTests {
         verify(mockRequest).sendResponseHeaders(202, 0);
         verify(mockRequest).close();
 
-        assertTrue(names.get().contains("bianca"));
+        assertTrue(names.contains("Bianca"));
     }
 
 }

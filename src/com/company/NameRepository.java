@@ -2,11 +2,12 @@ package com.company;
 
 import java.util.List;
 
-public interface NameRepository {
-    List<String> get();
+public interface NameRepository extends List<String> {
 
-    void add(String name);
+    boolean add(String name);
 
-    void remove(String name);
+    boolean remove(String name);
+
+    String getInitialName();
 
 }
