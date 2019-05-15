@@ -7,7 +7,8 @@ import java.io.OutputStream;
 
 public class RootHandler extends HelloWorldHandler {
 
-    public RootHandler(NameRepository names) {
+    public RootHandler(UserRepository names) {
+
         super(names);
     }
 
@@ -51,6 +52,7 @@ public class RootHandler extends HelloWorldHandler {
                 } else {
                     namesToDisplay += ", " + name;
                 }
+
             }
         }
 
